@@ -1,12 +1,15 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup' // yup library is used with Formik for form validation
+import PropTypes from 'prop-types'
 
 // the properties in initialValues correspond to the name properties in the form fields
 const initialValues = {
-    name    : 'Mark',
-    email   : '',
-    channel : '',
+    name     : 'Mark',
+    email    : '',
+    channel  : '',
+    comments : '',
+    address  : '',
 }
 
 // formiks onSubmit receives the values of the form as its argument
@@ -44,14 +47,47 @@ function YoutubeForm () {
 
                 <div className='form-control'>
                     <label htmlFor='channel'>Channel</label>
-                    <Field type='text' id='channel' name='channel' />
+                    <Field
+                        type='text'
+                        id='channel'
+                        name='channel'
+                        placeholder='Youtube channel name'
+                    />
                     <ErrorMessage name='channel' />
+                </div>
+
+                <div className='form-control'>
+                    <label htmlFor='comments'>Comments</label>
+                    <Field as='textarea' id='comments' name='comments' />
+                </div>
+
+                <div className='form-control'>
+                    <label htmlFor='address'>Address</label>
+                    <Field name='address'>
+                        {/* render props pattern for more fine grained control */}
+                        {(props) => {
+                            const { field, meta } = props
+                            console.log('Render props', props)
+                            return (
+                                <div>
+                                    <input type='text' id='address' {...field} />
+                                    {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+                                </div>
+                            )
+                        }}
+                    </Field>
                 </div>
 
                 <button type='submit'>Submit</button>
             </Form>
         </Formik>
     )
+}
+
+// type checking, see https://www.npmjs.com/package/prop-types
+YoutubeForm.propTypes = {
+    field : PropTypes.object,
+    meta  : PropTypes.object,
 }
 
 export default YoutubeForm
