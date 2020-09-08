@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup' // yup library is used with Formik for form validation
+import TextError from './TextError'
 import PropTypes from 'prop-types'
 
 // the properties in initialValues correspond to the name properties in the form fields
@@ -36,13 +37,16 @@ function YoutubeForm () {
                 <div className='form-control'>
                     <label htmlFor='name'>Name</label>
                     <Field type='text' id='name' name='name' />
-                    <ErrorMessage name='name' />
+                    <ErrorMessage name='name' component={TextError} />
                 </div>
 
                 <div className='form-control'>
                     <label htmlFor='email'>E-mail</label>
                     <Field type='email' id='email' name='email' />
-                    <ErrorMessage name='email' />
+                    {/* An alternate way than creating a custom component for the error message using the render pattern */}
+                    <ErrorMessage name='email'>
+                        {(errorMsg) => <div className='error'>{errorMsg}</div>}
+                    </ErrorMessage>
                 </div>
 
                 <div className='form-control'>
@@ -53,7 +57,7 @@ function YoutubeForm () {
                         name='channel'
                         placeholder='Youtube channel name'
                     />
-                    <ErrorMessage name='channel' />
+                    <ErrorMessage name='channel' component={TextError} />
                 </div>
 
                 <div className='form-control'>
@@ -71,7 +75,7 @@ function YoutubeForm () {
                             return (
                                 <div>
                                     <input type='text' id='address' {...field} />
-                                    {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+                                    {meta.touched && meta.error && <div>{meta.error}</div>}
                                 </div>
                             )
                         }}
