@@ -35,3 +35,9 @@ Scenarios when Formik validation runs:
 Formik provides props to the Formik component to control the first two scenarios if you want to disable them:
 1. validateOnChange={false}
 2. validateOnBlur={false}
+
+## Disabling Submit Button
+
+Two scenarios:
+1. Validity of the form state - by default, Formik doesn't disable the button on page load. If you want it to do that add 'disabled={!(formik.dirty && formik.isValid)}' to the Submit button. Note though that this would not allow the form to be submitted with no changes.
+2. Form submission in progress - Formik has a property callsed isSubmitting. We want to check if that property is true and if so, disable the button. In the submit button add disabled={formik.isSubmitting}. But, you also have to turn submitting property back to false in your onSubmit function, something like this - props.setSubmitting(false)
