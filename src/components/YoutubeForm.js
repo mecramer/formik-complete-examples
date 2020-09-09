@@ -37,14 +37,21 @@ const validationSchema = Yup.object({
     }),
 })
 
+// showing how to validate for one field
+const validateComments = (value) => {
+    let error
+    if (!value) {
+        error = 'Required!'
+    }
+    return error
+}
+
 function YoutubeForm () {
     return (
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
-            validateOnChange={false}
-            validateOnBlur={false}
         >
             {/* Formik provides a submission helper function, handleSubmit */}
             <Form>
@@ -76,7 +83,14 @@ function YoutubeForm () {
 
                 <div className='form-control'>
                     <label htmlFor='comments'>Comments</label>
-                    <Field as='textarea' id='comments' name='comments' />
+                    {/* validate prop here is for a custom field validation */}
+                    <Field
+                        as='textarea'
+                        id='comments'
+                        name='comments'
+                        validate={validateComments}
+                    />
+                    <ErrorMessage name='comments' component={TextError} />
                 </div>
 
                 <div className='form-control'>
