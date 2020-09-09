@@ -52,3 +52,7 @@ Two scenarios:
 1. Show a Loading indicator until the API is finished
 2. Update the state variable with the response
 3. Render the formik component
+
+## Resetting Form Data
+1. To reset to initial values, add a button with a type of reset
+2. You can also reset after form submission. In the onSubmit function, add 'onSubmitProps.resetForm()' where onSubmitProps is the name of your props variable
