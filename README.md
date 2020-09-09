@@ -12,7 +12,7 @@ Formik helps you do all of these things in a scalable, perfomant and easier way.
 ls
 
 Formik components:
-* Formik - a replacement to the useFormik hook. Its a context provider component that provides the different properties and helper methods of the following 3 Formik components.
+* Formik - a replacement to the useFormik hook. Its a context provider component that provides the different properties and helper methods of the following 3 Formik components:
   1. import Formik
   2. wrap entire component with the formik component
   3. pass in: initialValues, validationSchema and onSubmit
@@ -22,3 +22,4 @@ Formik components:
   2. uses the name attribute to hook up with the Formik state
   3. by default, will render an input element
 * ErrorMessage - behind the scenes, takes care of producing error message for the particular field indicated by the name prop, only if the field has been visited and an error exists
+* FastField - this component is mainly meant for performance optimization. Recommended for consideration if your form has more than 30 fields or very complex validation requirements. When using this, the field only re-renders when that particular field changes. It should only be considered if a field is independent of all other fields and doesn't rely on thinbgs like isValidating, submitCount..

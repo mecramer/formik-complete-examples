@@ -1,5 +1,5 @@
 import React from 'react'
-import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik'
+import { Formik, Form, Field, ErrorMessage, FieldArray, FastField } from 'formik'
 import * as Yup from 'yup' // yup library is used with Formik for form validation
 import TextError from './TextError'
 import PropTypes from 'prop-types'
@@ -79,11 +79,12 @@ function YoutubeForm () {
 
                 <div className='form-control'>
                     <label htmlFor='address'>Address</label>
-                    <Field name='address'>
+                    <FastField name='address'>
                         {/* render props pattern for more fine grained control */}
                         {(props) => {
+                            console.log('Field render')
+                            // console.log('Render props', props)
                             const { field, meta } = props
-                            console.log('Render props', props)
                             return (
                                 <div>
                                     <input type='text' id='address' {...field} />
@@ -91,7 +92,7 @@ function YoutubeForm () {
                                 </div>
                             )
                         }}
-                    </Field>
+                    </FastField>
                 </div>
 
                 <div className='form-control'>
@@ -126,7 +127,7 @@ function YoutubeForm () {
                             const { push, remove, form } = fieldArrayProps // get required methods to add and remove from the array
                             const { values } = form // get the values from the form
                             const { phNumbers } = values // get the phNumbers array to loop over
-                            console.log('fieldArrayProps', fieldArrayProps)
+                            // console.log('fieldArrayProps', fieldArrayProps)
                             return (
                                 <div>
                                     {/* loop over the phone numbers to display and give plus/minus buttons to add or remove items from the array */}
