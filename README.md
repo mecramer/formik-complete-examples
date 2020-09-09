@@ -11,7 +11,8 @@ Formik helps with 3 main parts:
 Formik helps you do all of these things in a scalable, perfomant and easier way.
 ls
 
-Formik components:
+## Formik Components
+
 * Formik - a replacement to the useFormik hook. Its a context provider component that provides the different properties and helper methods of the following 3 Formik components:
   1. import Formik
   2. wrap entire component with the formik component
@@ -23,3 +24,14 @@ Formik components:
   3. by default, will render an input element
 * ErrorMessage - behind the scenes, takes care of producing error message for the particular field indicated by the name prop, only if the field has been visited and an error exists
 * FastField - this component is mainly meant for performance optimization. Recommended for consideration if your form has more than 30 fields or very complex validation requirements. When using this, the field only re-renders when that particular field changes. It should only be considered if a field is independent of all other fields and doesn't rely on thinbgs like isValidating, submitCount..
+
+## Errors
+
+Scenarios when Formik validation runs:
+1. onChange - Formik runs validation after any change in the form
+2. onBlur - When the onBlur event happens in the form
+3. onSubmit - Whenever form submission is attempted. If the validation doesn't pass for all fields, the onSubmit handler doesn't get executed
+
+Formik provides props to the Formik component to control the first two scenarios if you want to disable them:
+1. validateOnChange={false}
+2. validateOnBlur={false}

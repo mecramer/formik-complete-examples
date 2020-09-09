@@ -43,6 +43,8 @@ function YoutubeForm () {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
+            validateOnChange={false}
+            validateOnBlur={false}
         >
             {/* Formik provides a submission helper function, handleSubmit */}
             <Form>
@@ -82,7 +84,7 @@ function YoutubeForm () {
                     <FastField name='address'>
                         {/* render props pattern for more fine grained control */}
                         {(props) => {
-                            console.log('Field render')
+                            // console.log('Field render')
                             // console.log('Render props', props)
                             const { field, meta } = props
                             return (
@@ -128,6 +130,7 @@ function YoutubeForm () {
                             const { values } = form // get the values from the form
                             const { phNumbers } = values // get the phNumbers array to loop over
                             // console.log('fieldArrayProps', fieldArrayProps)
+                            console.log('Form errors', form.errors)
                             return (
                                 <div>
                                     {/* loop over the phone numbers to display and give plus/minus buttons to add or remove items from the array */}
