@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form, Field, ErrorMessage, FieldArray, FastField } from 'formik'
 import * as Yup from 'yup' // yup library is used with Formik for form validation
 import TextError from './TextError'
@@ -15,6 +15,21 @@ const initialValues = {
     social       : {
         facebook : '',
         twitter  : '',
+    },
+    phoneNumbers : [ '', '' ],
+    phNumbers    : [ '' ],
+}
+
+// mocking of loading saved data
+const savedValues = {
+    name         : 'Mark',
+    email        : 'm@example.com',
+    channel      : 'Formik Forms',
+    comments     : 'Welcome to Formik',
+    address      : '245 Fifth Ave',
+    social       : {
+        facebook : 'FB',
+        twitter  : 'TW',
     },
     phoneNumbers : [ '', '' ],
     phNumbers    : [ '' ],
@@ -49,11 +64,14 @@ const validateComments = (value) => {
     return error
 }
 function YoutubeForm () {
+    const [ formValues, setFormValues ] = useState(null)
+
     return (
         <Formik
-            initialValues={initialValues}
+            initialValues={formValues || initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}
+            enableReinitialize // this prop decides whether your form can change values after initialized once
         >
             {(formik) => {
                 console.log('Formik props', formik)
@@ -175,7 +193,9 @@ function YoutubeForm () {
                                 }}
                             </FieldArray>
                         </div>
-
+                        <button type='button' onClick={() => setFormValues(savedValues)}>
+                            Load saved data
+                        </button>
                         <button
                             type='submit'
                             disabled={!(formik.dirty && formik.isValid) || formik.isSubmitting}
