@@ -41,3 +41,14 @@ Formik provides props to the Formik component to control the first two scenarios
 Two scenarios:
 1. Validity of the form state - by default, Formik doesn't disable the button on page load. If you want it to do that add 'disabled={!(formik.dirty && formik.isValid)}' to the Submit button. Note though that this would not allow the form to be submitted with no changes.
 2. Form submission in progress - Formik has a property callsed isSubmitting. We want to check if that property is true and if so, disable the button. In the submit button add disabled={formik.isSubmitting}. But, you also have to turn submitting property back to false in your onSubmit function, something like this - props.setSubmitting(false)
+
+## Load Saved Data into Formik
+1. Import the saved data object
+2. Populate a state variable with the data
+3. Inform Formik to use the saved values if present - initialValues={formValues || initialValues}
+4. Tell Formik to re-enable initialization using a prop in the Formik component - enableReinitialize
+
+## Fetch Values from an API
+1. Show a Loading indicator until the API is finished
+2. Update the state variable with the response
+3. Render the formik component
