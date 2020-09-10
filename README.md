@@ -56,3 +56,13 @@ Two scenarios:
 ## Resetting Form Data
 1. To reset to initial values, add a button with a type of reset
 2. You can also reset after form submission. In the onSubmit function, add 'onSubmitProps.resetForm()' where onSubmitProps is the name of your props variable
+
+## Reusable Formik Controls
+* FormikContainer component
+* FormikControl component - this component decides which of the form fields have to be rendered based on one prop
+* Input
+* TextArea
+* Select
+* RadioButtons
+* Checkboxes
+* DatePicker
