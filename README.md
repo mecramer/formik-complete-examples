@@ -58,11 +58,11 @@ Two scenarios:
 2. You can also reset after form submission. In the onSubmit function, add 'onSubmitProps.resetForm()' where onSubmitProps is the name of your props variable
 
 ## Reusable Formik Controls
-* FormikContainer component
+* FormikContainer component - created to test the input types
 * FormikControl component - this component decides which of the form fields have to be rendered based on one prop
 * Input
 * TextArea
 * Select
 * RadioButtons
 * Checkboxes
-* DatePicker
+* DatePicker - this one, we are using the react-datepicker library
